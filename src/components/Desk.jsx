@@ -1,7 +1,7 @@
 import React from "react";
 import Evidence from "./Evidence";
 
-export default function Desk() {
+export default function Desk({editorText, evidenceText}) {
   return (
     <div className="Desk">
       <div className="BookCover Book">
@@ -15,7 +15,7 @@ export default function Desk() {
       <div className="ReferenceBook Book">
         <h3>UGNT</h3>
       </div>
-      <Evidence text="For God so loved the world..." />
+      <Evidence evidenceText={evidenceText} editorText={editorText} />
       <div className="ReferenceBook Book">
         <h3>UTN</h3>
       </div>

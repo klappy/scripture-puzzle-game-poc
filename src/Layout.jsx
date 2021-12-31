@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import ComputerScreen from "./components/ComputerScreen";
 import Desk from "./components/Desk";
 
 export default function Layout() {
+  const [editorText, setEditorText] = useState('');
+  const [evidenceText, setEvidenceText] = useState('For God so loved the world...');
 
   return (
     <div className="Layout">
       <div className="BackWall">
       </div>
-      <div className="ComputerScreen">Editor Goes Here</div>
-      <Desk />
+      <ComputerScreen editorText={editorText} onEditorText={setEditorText} />
+      <Desk
+        editorText={editorText}
+        evidenceText={evidenceText}
+      />
       <div className="FileCabinet">FileCabinet</div>
     </div>
   );

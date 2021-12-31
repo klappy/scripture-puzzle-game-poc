@@ -1,0 +1,8 @@
+.used {
+  text-decoration: line-through red;
+}
+
+.correct {
+  text-decoration: none;
+  background-color: yellow;
+}
