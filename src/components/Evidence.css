@@ -1,3 +1,18 @@
+.Evidence {
+  display: inline-block;
+  background-color: wheat;
+  height: 10em;
+  width: 7em;
+  margin: 1em;
+}
+
+.Evidence h3 {
+  color: red;
+  text-decoration: underline;
+  text-underline-offset: 0.5em;
+  width: 100%;
+}
+
 .used {
   text-decoration: line-through red;
 }

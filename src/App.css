@@ -29,8 +29,8 @@
   background-color: burlywood;
   padding: 1em;
   transform: rotateX(30deg);
-  width: 50em;
-  margin: auto;
+  /* width: 50em;
+  margin: auto; */
 }
 
 .Book, .Printout {
@@ -73,21 +73,6 @@
   margin: 0.2em;
   padding: 0 0.05em;
   font-weight: 700;
-}
-
-.Evidence {
-  display: inline-block;
-  background-color: wheat;
-  height: 10em;
-  width: 7em;
-  margin: 1em;
-}
-
-.Evidence h3 {
-  color: red;
-  text-decoration: underline;
-  text-underline-offset: 0.5em;
-  width: 100%;
 }
 
 .FileCabinet {
