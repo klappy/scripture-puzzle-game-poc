@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@brick-color: #bd5858;
+@brick-border-radius: 2px;
+@brick-width: 15%;
+@brick-height: 3vw;
+@brick-space: 2px;
+@brick-side-space: 4px;
+
+.brick(@width) {
+  background: @brick-color;
+  width: @width;
+  height: @brick-height;
+  border-radius: @brick-border-radius;
+  margin: @brick-space;
+  box-shadow: 0 0 19px 1px darken(@brick-color, 20%) inset;
+}
+
+.row {
+  display: flex;
+  background: #ccc;
+
+  &:first-child .brick {
+    margin-top: @brick-side-space;
+  }
+  &:last-child .brick {
+    margin-bottom: @brick-side-space;
+  }
+
+  &:nth-child(even) {
+    .brick:first-child {
+      display: none;
+    }
+    .brick:last-child {
+      margin-right: @brick-space;
+    }
+    &::before,
+    &::after {
+      position: relative;
+      content: "";
+      /* .brick(calc(@brick-width/2)); */
+    }
+    &::before {
+      margin-left: @brick-side-space;
+    }
+    &::after {
+      margin-right: @brick-side-space;
+    }
+  }
+}
+
+.brick {
+  /* .brick(@brick-width); */
+
+  &:last-child {
+    margin-right: @brick-side-space;
+  }
+  &:first-child {
+    margin-left: @brick-side-space;
+  }
+}

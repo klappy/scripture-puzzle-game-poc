@@ -1,38 +1,110 @@
 .App {
   text-align: center;
+  min-width: 40em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Layout {
+  background-color: brown;
+  padding: 1em 0 0 0;
+  perspective: 80em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ComputerScreen {
+  border: beige 2em solid;
+  border-radius: 2.3em;
+  color: lightgreen;
+  background-color: darkgreen;
+  font-family: monospace;
+  height: 25em;
+  width: 40em;
+  margin: 1em auto 0;
+  transform: rotateX(-7deg);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.BackWall {
+
 }
 
-.App-link {
-  color: #61dafb;
+.Desk {
+  background-color: burlywood;
+  padding: 1em;
+  transform: rotateX(30deg);
+  width: 50em;
+  margin: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Book, .Printout {
+  display: inline-block;
+  height: 8em;
+  width: 6em;
+  margin: 1em;
+}
+
+.Book {
+  border-right: 0.5em solid;
+  border-bottom: 0.5em solid;
+  border-radius: 0.3em;
+}
+
+.ReferenceBook {
+  background-color: whitesmoke;
+  border-color: lightgray;
+}
+
+.BookCover {
+  border-color: gold;
+  border-radius: 0.3em;
+}
+
+.BookCover .gap {
+  margin: 1.5em auto;
+  height: 2em;
+  width: 4em;
+  background-color: gray;
+}
+
+.BookCover, .BookCoverLetter {
+  background-color: black;
+  color: gold;
+}
+
+.BookCoverLetter {
+  display: inline-block;
+  margin: 0.2em;
+  padding: 0 0.05em;
+  font-weight: 700;
+}
+
+.Evidence {
+  display: inline-block;
+  background-color: wheat;
+  height: 10em;
+  width: 7em;
+  margin: 1em;
+}
+
+.Evidence h3 {
+  color: red;
+  text-decoration: underline;
+  text-underline-offset: 0.5em;
+  width: 100%;
+}
+
+.FileCabinet {
+  background-color: gray;
+}
+
+.Printout {
+  background-color: ivory;
+  border: 1px blue dotted;
+  color: darkgray;
+  font-family: monospace;
+}
+
+.Word {
+  background-color: lightgray;
+  font-family: cursive;
+  padding: 0 0.2em;
+  margin: 0.2em;
+  border: 2px wheat dotted;
 }
