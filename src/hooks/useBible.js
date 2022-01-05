@@ -9,6 +9,7 @@ export default function useBible({ reference }) {
     useEffect(() => {
         const line = lines.find((l) => { return l.includes(reference) });
         const [_reference, _verse] = line.split('\t');
+        console.log(_reference);
         setVerse(_verse);
     }, [reference]);
 
