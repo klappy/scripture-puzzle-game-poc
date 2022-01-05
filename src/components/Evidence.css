@@ -14,7 +14,8 @@
 }
 
 .used {
-  text-decoration: line-through red;
+  text-decoration: line-through;
+  text-decoration-color: red;
 }
 
 .correct {
