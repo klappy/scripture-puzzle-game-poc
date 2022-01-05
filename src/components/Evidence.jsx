@@ -1,7 +1,7 @@
 import React from "react";
 import Word from "./Word";
 
-export default function Evidence({evidenceText='', editorText=''}) {
+export default function Evidence({ evidenceText = '', editorText = '' }) {
   const evidenceWords = evidenceText.split(' ');
   const editorWords = editorText.split(' ');
 
@@ -10,7 +10,8 @@ export default function Evidence({evidenceText='', editorText=''}) {
   // const correctOverlap = "For God";
   const correctOverlap = editorWords.filter((word, index) => (word === evidenceWords[index]));
 
-  const wordsComponent = evidenceWords.reverse().map((word, index) => {
+  const randomWords = evidenceWords.sort(() => (Math.random() > .5) ? 1 : -1);
+  const wordsComponent = randomWords.map((word, index) => {
     const used = editorWords.includes(word);
     const correct = (correctOverlap.includes(word));
     return (<Word key={word + index} used={used} text={word} correct={correct} />);

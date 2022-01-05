@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ComputerScreen from "./components/ComputerScreen";
 import Desk from "./components/Desk";
+import useBible from "./hooks/useBible";
 
 export default function Layout() {
   const [editorText, setEditorText] = useState('');
   const [evidenceText, setEvidenceText] = useState('');
 
+  const reference = 'Genesis 1:1';
+  const { verse } = useBible({ reference });
+
   useEffect(() => {
-    setEvidenceText('For God so loved the world...');
-  }, [])
+    setEvidenceText(verse);
+  }, [verse]);
 
   return (
     <div className="Layout">
