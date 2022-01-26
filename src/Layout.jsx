@@ -15,7 +15,7 @@ export default function Layout() {
   }, [verse]);
 
   const addWordToEditorText = ({word}) => {
-    const _editorText = editorText + ' ' + word;
+    const _editorText = [ editorText.trim(), word ].join(' ').trim();
     setEditorText(_editorText);
   };
 
