@@ -14,6 +14,11 @@ export default function Layout() {
     setEvidenceText(verse);
   }, [verse]);
 
+  const addWordToEditorText = ({word}) => {
+    const _editorText = [ editorText.trim(), word ].join(' ').trim();
+    setEditorText(_editorText);
+  };
+
   return (
     <div className="Layout">
       <div className="BackWall">
@@ -22,6 +27,7 @@ export default function Layout() {
       <Desk
         editorText={editorText}
         evidenceText={evidenceText}
+        addWordToEditorText={addWordToEditorText}
       />
       <div className="FileCabinet">FileCabinet</div>
     </div>
