@@ -28,6 +28,7 @@ export default function Layout() {
         editorText={editorText}
         evidenceText={evidenceText}
         addWordToEditorText={addWordToEditorText}
+        reference={reference}
       />
       <div className="FileCabinet">FileCabinet</div>
     </div>

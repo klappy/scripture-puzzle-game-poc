@@ -35,8 +35,8 @@
 
 .Book, .Printout {
   display: inline-block;
-  height: 8em;
-  width: 6em;
+  height: 9em;
+  width: 7em;
   margin: 1em;
 }
 

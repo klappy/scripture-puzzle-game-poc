@@ -1,7 +1,8 @@
 import React from "react";
 import Evidence from "./Evidence";
+import Printout from "./Printout";
 
-export default function Desk({editorText, evidenceText, addWordToEditorText}) {
+export default function Desk({ reference, editorText, evidenceText, addWordToEditorText }) {
   return (
     <div className="Desk">
       <div className="BookCover Book">
@@ -19,7 +20,7 @@ export default function Desk({editorText, evidenceText, addWordToEditorText}) {
       <div className="ReferenceBook Book">
         <h3>UTN</h3>
       </div>
-      <div className="Printout">Printout</div>
+      <Printout evidenceText={evidenceText} editorText={editorText} reference={reference} />
   </div>
   );
 };
