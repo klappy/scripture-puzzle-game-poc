@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { UsfmEditor } from 'simple-text-editor-rcl';
 import './Usfm.css';
 
