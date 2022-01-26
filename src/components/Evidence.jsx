@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDeepCompareEffect } from "use-deep-compare";
 import Word from "./Word";
 
 export default function Evidence({ evidenceText = '', editorText = '' }) {
-  const evidenceWords = evidenceText.split(' ');
-  const editorWords = editorText.split(' ');
+  const [randomWords, setRandomWords] = useState([]);
 
-  // let evidence = "For God so loved the world..."
-  // let editor = "For God the"
-  // const correctOverlap = "For God";
+  const evidenceWords = evidenceText.split(' ');
+
+  useDeepCompareEffect(() => {
+    const _randomWords = evidenceWords.sort(() => (Math.random() > .5) ? 1 : -1);
+    setRandomWords(_randomWords);
+  }, [evidenceWords]);
+
+  const editorWords = editorText.split(' ');
   const correctOverlap = editorWords.filter((word, index) => (word === evidenceWords[index]));
 
-  const randomWords = evidenceWords.sort(() => (Math.random() > .5) ? 1 : -1);
   const wordsComponent = randomWords.map((word, index) => {
     const used = editorWords.includes(word);
     const correct = (correctOverlap.includes(word));
