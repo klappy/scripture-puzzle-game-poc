@@ -7,8 +7,7 @@ export default function Layout() {
   const [editorText, setEditorText] = useState('');
   const [evidenceText, setEvidenceText] = useState('');
 
-  const reference = 'Genesis 1:1';
-  const { verse } = useBible({ reference });
+  const { reference, verse } = useBible({});
 
   useEffect(() => {
     setEvidenceText(verse);
