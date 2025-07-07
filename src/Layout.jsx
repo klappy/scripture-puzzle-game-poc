@@ -7,6 +7,8 @@ export default function Layout() {
   const [editorText, setEditorText] = useState('');
   const [evidenceText, setEvidenceText] = useState('');
   const [currentReference, setCurrentReference] = useState('');
+  const [score, setScore] = useState(0);
+  const [wasComplete, setWasComplete] = useState(false);
 
   const { reference, verse, randomVerse } = useBible({});
 
@@ -22,6 +24,18 @@ export default function Layout() {
     setEditorText(_editorText);
   };
 
+  // track verse completion to update score once per verse
+  const verseComplete = evidenceText.trim().length > 0 && evidenceText.trim() === editorText.trim();
+
+  useEffect(() => {
+    if (verseComplete && !wasComplete) {
+      setScore(prev => prev + 1);
+      setWasComplete(true);
+    } else if (!verseComplete && wasComplete) {
+      setWasComplete(false);
+    }
+  }, [verseComplete, wasComplete]);
+
   // GAMEPLAY CONTROLS -----------------------
   const undoLastWord = () => {
     const words = editorText.trim().split(/\s+/);
@@ -36,6 +50,7 @@ export default function Layout() {
     setEvidenceText(newVerse);
     setCurrentReference(newRef);
     setEditorText('');
+    setWasComplete(false);
   };
 
   return (
@@ -49,6 +64,8 @@ export default function Layout() {
         <button onClick={clearEditor}>Clear</button>
         <button onClick={nextVerse}>Next Verse</button>
       </div>
+
+      <div className="Scoreboard">Score: {score}</div>
 
       <Desk
         editorText={editorText}
