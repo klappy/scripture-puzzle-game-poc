@@ -87,3 +87,47 @@
   opacity: 0.8;
   pointer-events: none;
 }
+
+.Evidence .fingerprint {
+  position: absolute;
+  width: 5em;
+  height: 5em;
+  background-image: url('https://i.imgur.com/eM6Uz7j.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  filter: sepia(0.4) hue-rotate(-20deg);
+}
+
+.Evidence .fp1 {
+  top: 1.6em;
+  left: 0.4em;
+  transform: rotate(12deg);
+}
+
+.Evidence .fp2 {
+  bottom: 1.4em;
+  right: 0.4em;
+  transform: rotate(-18deg);
+}
+
+.Evidence .redacted {
+  position: absolute;
+  height: 1em;
+  background: rgba(0,0,0,0.85);
+  opacity: 0.9;
+}
+
+.Evidence .r1 {
+  top: 4.2em;
+  left: 0.8em;
+  width: 80%;
+  transform: rotate(-2deg);
+}
+
+.Evidence .r2 {
+  top: 6em;
+  left: 1em;
+  width: 75%;
+  transform: rotate(1deg);
+}

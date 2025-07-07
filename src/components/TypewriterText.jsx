@@ -4,6 +4,15 @@ import './TypewriterText.css';
 const typingAudio = new Audio('/sounds/typewriter-key.mp3');
 typingAudio.volume = 0.3;
 
+const dingAudio = (() => {
+  const audio = new Audio('/sounds/typewriter-ding.mp3');
+  audio.onerror = () => {
+    audio.src = 'https://assets.mixkit.co/sfx/preview/mixkit-typewriter-turnover-3477.mp3';
+  };
+  audio.volume = 0.4;
+  return audio;
+})();
+
 export default function TypewriterText({ text = '', speed = 35 }) {
   const [display, setDisplay] = useState('');
   const [finished, setFinished] = useState(false);
@@ -27,6 +36,10 @@ export default function TypewriterText({ text = '', speed = 35 }) {
   useEffect(() => {
     if (display.length === text.length && text.length > 0) {
       setFinished(true);
+      try {
+        dingAudio.currentTime = 0;
+        dingAudio.play();
+      } catch(e) {}
       const t = setTimeout(() => setFinished(false), 700);
       return () => clearTimeout(t);
     }
