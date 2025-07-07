@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import './TypewriterText.css';
 
 const typingAudio = new Audio('/sounds/typewriter-key.mp3');
 typingAudio.volume = 0.3;
 
 export default function TypewriterText({ text = '', speed = 35 }) {
   const [display, setDisplay] = useState('');
+  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     let index = 0;
@@ -22,5 +24,13 @@ export default function TypewriterText({ text = '', speed = 35 }) {
     return () => clearInterval(interval);
   }, [text, speed]);
 
-  return <span>{display}</span>;
+  useEffect(() => {
+    if (display.length === text.length && text.length > 0) {
+      setFinished(true);
+      const t = setTimeout(() => setFinished(false), 700);
+      return () => clearTimeout(t);
+    }
+  }, [display, text]);
+
+  return <span className={`TypewriterText ${finished ? 'finished' : ''}`}>{display}</span>;
 }

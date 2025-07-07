@@ -19,7 +19,14 @@ export default function Layout() {
 
   const { reference, verse, randomVerse } = useBible({});
 
-  const shuffleAudio = typeof Audio !== 'undefined' ? new Audio('/sounds/paper-shuffle.mp3') : null;
+  const shuffleAudio = typeof Audio !== 'undefined' ? (() => {
+    const audio = new Audio('/sounds/paper-shuffle.mp3');
+    audio.onerror = () => {
+      audio.src = 'https://assets.mixkit.co/sfx/preview/mixkit-quick-paper-shuffling-2354.mp3';
+    };
+    audio.volume = 0.5;
+    return audio;
+  })() : null;
 
   useEffect(() => {
     if (verse) {

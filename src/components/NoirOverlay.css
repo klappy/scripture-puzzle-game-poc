@@ -6,7 +6,12 @@
   height: 100%;
   pointer-events: none;
   z-index: 500;
-  background: rgba(20, 20, 20, 0.3);
-  mix-blend-mode: multiply;
-  backdrop-filter: grayscale(0.4) contrast(1.3) brightness(0.9);
+  background: rgba(10, 10, 10, 0.35);
+  mix-blend-mode: overlay;
+  backdrop-filter: grayscale(0.55) contrast(1.25) brightness(0.9);
+
+  /* film grain */
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgdmlld0JveD0nMCAwIDEwMCAxMDAnIHhtbG5zPScgaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxjbGlwUGF0aCBpZD0nZyc+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0ndXJsKCNnKSc+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsbD0nI2ZmZicgZmlsbC1vcGFjaXR5PScwLjEnLz48Y2lyY2xlIGN4PScxMCcgcj0nMycgZmlsbD0nI2ZmZicgZmlsbC1vcGFjaXR5PScwLjUnIGZpbHRlcj0nYmx1cjEwJyAvPjxjaXJjbGUgY3g9JzQwJyByPScyJyBmaWxsPScjZmZmJyBmaWxsLW9wYWNpdHk9JzAuMicgZmlsdGVyPSdibHVyMTAnIC8+PGNpcmNsZSBjeD0nNzAnIHI9JzQuNScgZmlsbD0nI2ZmZicgZmlsbC1vcGFjaXR5PScwLjM1JyBmaWx0ZXI9J2JsdXIxMCcgLz48L2c+PGZpbHRlciBpZD0nYmx1cjEwJz48ZmVUdXJidWxlIGJhc2VGcmVxdWVuY3k9JzAuMzknIGNvbG9yLXJpbnM9JzMnLz48ZmVCbGVuZCBtb2RlPSdibHVyJy8+PC9maWx0ZXI+PC9zdmc+");
+  background-size: 120px 120px;
+  opacity: 0.7;
 }

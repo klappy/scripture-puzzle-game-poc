@@ -33,6 +33,8 @@ export default function Evidence({ evidenceText = '', editorText = '', addWordTo
 
   return (
     <div className="Evidence">
+      <div className="paperclip" />
+      <div className="coffee-stain" />
       <h3>Evidence</h3>
       <p>{wordsComponent}</p>
     </div>
