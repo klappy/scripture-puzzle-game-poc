@@ -23,7 +23,7 @@
   margin: 1em auto 0;
   transform: rotateX(-7deg);
   box-shadow: 0 0 15px 4px rgba(0, 255, 0, 0.5);
-  animation: crtGlow 2.8s infinite steps(2, end);
+  animation: crtGlow 2.8s infinite steps(2, end), vhsShift 9s infinite;
   position: relative;
 }
 
@@ -196,4 +196,24 @@
 @keyframes scanlines {
   0% { background-position: 0 0; }
   100% { background-position: 0 4px; }
+}
+
+@keyframes vhsShift {
+  0%, 100% { filter: none; }
+  25% { filter: hue-rotate(2deg) saturate(1.1); }
+  50% { filter: hue-rotate(-2deg) saturate(1); }
+  75% { filter: hue-rotate(1deg) saturate(1.2); }
+}
+
+/* Word interactive hover feedback */
+.Word:not(.used):hover {
+  background-color: #fff786;
+  color: #000;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.Word:not(.used):active {
+  transform: translateY(0) scale(0.96);
 }

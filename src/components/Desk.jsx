@@ -1,6 +1,7 @@
 import React from "react";
 import Evidence from "./Evidence";
 import Printout from "./Printout";
+import CassetteTape from "./CassetteTape";
 
 export default function Desk({ reference, editorText, evidenceText, addWordToEditorText }) {
   return (
@@ -21,6 +22,7 @@ export default function Desk({ reference, editorText, evidenceText, addWordToEdi
         <h3>UTN</h3>
       </div>
       <Printout evidenceText={evidenceText} editorText={editorText} reference={reference} />
-  </div>
+      <CassetteTape />
+    </div>
   );
 };

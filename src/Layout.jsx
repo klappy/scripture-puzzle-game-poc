@@ -4,6 +4,7 @@ import Desk from "./components/Desk";
 import useBible from "./hooks/useBible";
 import BrickWall from "./components/BrickWall";
 import DustParticles from "./components/DustParticles";
+import NeonSign from "./components/NeonSign";
 
 export default function Layout() {
   const [editorText, setEditorText] = useState('');
@@ -60,6 +61,7 @@ export default function Layout() {
       <div className="BackWall">
         <BrickWall />
         <DustParticles />
+        <NeonSign />
       </div>
       <ComputerScreen editorText={editorText} onEditorText={setEditorText} />
 

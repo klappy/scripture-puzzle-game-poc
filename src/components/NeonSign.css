@@ -1,0 +1,40 @@
+.NeonSign {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', 'VT323', monospace;
+  font-size: 1.6rem;
+  color: #ff2aad;
+  text-shadow:
+    0 0 4px #ff2aad,
+    0 0 6px #ff2aad,
+    0 0 10px #ff2aad,
+    0 0 20px #ff2aad;
+  animation: neonFlicker 6s infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes neonFlicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 4px #ff2aad,
+      0 0 6px #ff2aad,
+      0 0 10px #ff2aad,
+      0 0 20px #ff2aad;
+  }
+  92%, 95% {
+    opacity: 0.7;
+    text-shadow:
+      0 0 2px #ff2aad,
+      0 0 4px #ff2aad,
+      0 0 6px #ff2aad,
+      0 0 12px #ff2aad;
+  }
+  96%, 98% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
