@@ -217,3 +217,8 @@
 .Word:not(.used):active {
   transform: translateY(0) scale(0.96);
 }
+
+/* Magnifying glass cursor (simple crosshair fallback) */
+.Word:not(.used) {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNScgaGVpZ2h0PScxNScgdmlld0JveD0nMCAwIDE2IDE2Jz48Y2lyY2xlIGN4PSc2JyBjeT0nNicgcj0nNScgc3R5bGU9J2ZpbGw6bm9uZTtzdHJva2U6I2ZmZjsgc3Ryb2tlLXdpZHRoOjI7Jy8+PGxpbmUgeDE9JzExJyB5MT0nMTEnIHgyPScxNScgeTI9JzE1JyBzdHlsZT0nc3Ryb2tlOiNmZmY7c3Ryb2tlLXdpZHRoOjI7Jy8+PC9zdmc+'), crosshair;
+}

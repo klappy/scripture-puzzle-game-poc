@@ -5,6 +5,7 @@ import useBible from "./hooks/useBible";
 import BrickWall from "./components/BrickWall";
 import DustParticles from "./components/DustParticles";
 import NeonSign from "./components/NeonSign";
+import CaseSolvedStamp from "./components/CaseSolvedStamp";
 
 export default function Layout() {
   const [editorText, setEditorText] = useState('');
@@ -12,6 +13,7 @@ export default function Layout() {
   const [currentReference, setCurrentReference] = useState('');
   const [score, setScore] = useState(0);
   const [wasComplete, setWasComplete] = useState(false);
+  const [showStamp, setShowStamp] = useState(false);
 
   const { reference, verse, randomVerse } = useBible({});
 
@@ -34,6 +36,8 @@ export default function Layout() {
     if (verseComplete && !wasComplete) {
       setScore(prev => prev + 1);
       setWasComplete(true);
+      setShowStamp(true);
+      setTimeout(() => setShowStamp(false), 2500);
     } else if (!verseComplete && wasComplete) {
       setWasComplete(false);
     }
@@ -80,6 +84,7 @@ export default function Layout() {
         reference={currentReference}
       />
       <div className="FileCabinet">FileCabinet</div>
+      <CaseSolvedStamp visible={showStamp} />
     </div>
   );
 };
