@@ -20,6 +20,8 @@
   width: 40em;
   margin: 1em auto 0;
   transform: rotateX(-7deg);
+  box-shadow: 0 0 15px 4px rgba(0, 255, 0, 0.5);
+  animation: crtGlow 2.8s infinite steps(2, end);
 }
 
 .BackWall {
@@ -33,11 +35,28 @@
 }
 
 .Desk {
-  background-color: burlywood;
+  position: relative;
+  background-color: #deb887; /* fallback */
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0.04) 50%, rgba(255,255,255,0.04) 100%),
+    repeating-linear-gradient(45deg, #d7a96b 0px, #d7a96b 6px, #cd9654 6px, #cd9654 12px);
+  background-size: 100% 100%, 12px 12px;
   padding: 1em;
   transform: rotateX(30deg);
-  /* width: 50em;
-  margin: auto; */
+}
+
+.Desk::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: 100%;
+  height: 200%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,224,0.45) 0%, rgba(255,255,224,0.05) 60%, rgba(0,0,0,0) 75%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(40px);
 }
 
 .Book, .Printout {
@@ -136,4 +155,15 @@
   background-color: lightgreen;
   color: #000;
   font-weight: 700;
+}
+
+@keyframes crtGlow {
+  0%, 18%, 21%, 23%, 80%, 100% {
+    box-shadow: 0 0 12px 4px rgba(0, 255, 0, 0.4);
+    filter: brightness(1);
+  }
+  19%, 22%, 81%, 99% {
+    box-shadow: 0 0 6px 2px rgba(0, 255, 0, 0.2);
+    filter: brightness(0.8);
+  }
 }
