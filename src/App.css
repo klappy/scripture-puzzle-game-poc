@@ -13,6 +13,12 @@
   --desk-wood: #8b4513;
   --desk-shadow: #654321;
   --screen-glow: rgba(0, 255, 65, 0.3);
+  --detective-red: #ff4444;
+  --detective-amber: #ffaa00;
+  --case-paper: #f5f5dc;
+  --ink-blue: #000080;
+  --badge-gold: #ffd700;
+  --evidence-yellow: #ffeb3b;
 }
 
 /* Global styles with retro aesthetics */
@@ -172,7 +178,8 @@ body {
   z-index: -2;
 }
 
-.Desk {
+/* Detective Office Desk Styling */
+.Desk.detective-office {
   background: 
     linear-gradient(135deg, var(--desk-wood) 0%, var(--desk-shadow) 100%);
   padding: 2em;
@@ -199,9 +206,13 @@ body {
       rgba(0,0,0,0.05) 1px,
       rgba(0,0,0,0.05) 2px
     );
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 1.5em;
+  align-items: start;
 }
 
-.Desk::before {
+.Desk.detective-office::before {
   content: '';
   position: absolute;
   top: 0;
@@ -214,6 +225,316 @@ body {
     rgba(255, 255, 255, 0.2) 100%
   );
   border-radius: 2em 2em 0 0;
+}
+
+/* Case File Stack */
+.case-file-stack {
+  position: relative;
+  transform: rotate(-5deg);
+}
+
+.case-file {
+  background: linear-gradient(135deg, #f5f5dc 0%, #f0f0e8 100%);
+  border: 2px solid #8b4513;
+  border-radius: 0.3em;
+  padding: 1em;
+  width: 10em;
+  height: 13em;
+  position: relative;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  /* Paper texture */
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1.2em,
+      rgba(0, 0, 128, 0.1) 1.2em,
+      rgba(0, 0, 128, 0.1) 1.3em
+    );
+}
+
+.file-tab {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  background: var(--detective-red);
+  color: white;
+  padding: 0.2em 0.8em;
+  font-size: 0.7em;
+  font-weight: 700;
+  border-radius: 0.3em 0.3em 0 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.file-label {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.8em;
+  color: var(--ink-blue);
+  text-align: center;
+  margin-top: 2em;
+  letter-spacing: 1px;
+}
+
+.classification-stamp {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%) rotate(-10deg);
+  background: var(--detective-red);
+  color: white;
+  padding: 0.3em 0.8em;
+  border: 2px solid var(--detective-red);
+  border-radius: 0.2em;
+  font-size: 0.6em;
+  font-weight: 900;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Detective Badge */
+.detective-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(10deg);
+}
+
+.badge-circle {
+  width: 8em;
+  height: 8em;
+  background: radial-gradient(circle, var(--badge-gold) 0%, #b8860b 100%);
+  border: 4px solid #8b6914;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0 2px 5px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.badge-star {
+  font-size: 2em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.badge-text {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 0.6em;
+  color: #8b6914;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.badge-number {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.8em;
+  color: #8b6914;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Investigation Manual & Forensics Guide */
+.investigation-manual, .forensics-guide {
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+  border: 3px solid #34495e;
+  border-radius: 0.5em;
+  padding: 1em;
+  color: #ecf0f1;
+  font-family: 'Orbitron', monospace;
+  text-align: center;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.manual-title, .guide-title {
+  font-size: 1em;
+  font-weight: 900;
+  margin-bottom: 0.5em;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.manual-subtitle, .guide-subtitle {
+  font-size: 0.7em;
+  font-weight: 400;
+  margin-bottom: 1em;
+  color: #bdc3c7;
+}
+
+.manual-edition {
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.5em;
+  font-size: 0.6em;
+  color: #7f8c8d;
+}
+
+.guide-icon {
+  font-size: 2em;
+  margin-top: 1em;
+  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+}
+
+/* Detective Tools */
+.detective-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.tool-magnifier, .tool-notepad, .tool-flashlight {
+  background: linear-gradient(135deg, #555 0%, #333 100%);
+  border: 2px solid #666;
+  border-radius: 0.8em;
+  padding: 0.8em;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tool-magnifier:hover, .tool-notepad:hover, .tool-flashlight:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.magnifier-lens {
+  font-size: 2em;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
+}
+
+.notepad-content {
+  font-size: 1.5em;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.5));
+}
+
+.flashlight-body {
+  font-size: 1.5em;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+/* Crime Scene Photos */
+.crime-scene-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.photo {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  border: 3px solid #333;
+  border-radius: 0.3em;
+  padding: 0.8em;
+  width: 6em;
+  height: 6em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: rotate(-3deg);
+  transition: all 0.3s ease;
+}
+
+.photo:hover {
+  transform: rotate(0deg) scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.photo-content {
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+}
+
+.photo-label {
+  font-size: 0.6em;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+}
+
+/* Evidence Markers */
+.evidence-markers {
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+}
+
+.marker {
+  width: 2em;
+  height: 2em;
+  background: var(--evidence-yellow);
+  border: 2px solid #f57f17;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  color: #e65100;
+  font-family: 'Orbitron', monospace;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.marker:hover {
+  transform: scale(1.2);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(255, 235, 59, 0.6);
+}
+
+/* Detective Coffee */
+.detective-coffee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.coffee-cup {
+  font-size: 2em;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+  animation: coffeeWarm 3s ease-in-out infinite alternate;
+}
+
+@keyframes coffeeWarm {
+  0% { transform: rotate(-2deg); }
+  100% { transform: rotate(2deg); }
+}
+
+.coffee-steam {
+  position: absolute;
+  top: -10px;
+  width: 20px;
+  height: 30px;
+  background: 
+    radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.6) 0%, transparent 50%);
+  animation: steamRise 2s ease-in-out infinite;
+}
+
+@keyframes steamRise {
+  0% { 
+    opacity: 0.8; 
+    transform: translateY(0) scale(1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-20px) scale(1.5); 
+  }
 }
 
 .Book, .Printout {
@@ -299,33 +620,245 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.Printout {
-  background: linear-gradient(135deg, #fffff0 0%, #f0f0f0 100%);
-  border: 2px #4169e1 dotted;
-  color: #333;
+/* Detective Case Report Styling */
+.Printout.detective-case-report {
+  background: linear-gradient(135deg, var(--case-paper) 0%, #f0f0e8 100%);
+  border: 2px solid var(--ink-blue);
+  color: var(--ink-blue);
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.8em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  font-size: 0.9em;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   position: relative;
-  overflow: hidden;
-}
-
-.Printout::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
+  overflow: visible;
+  width: 16em;
+  height: auto;
+  min-height: 20em;
+  padding: 1.5em;
+  /* Paper texture */
+  background-image: 
     repeating-linear-gradient(
       0deg,
       transparent,
-      transparent 1.2em,
-      rgba(0, 0, 255, 0.1) 1.2em,
-      rgba(0, 0, 255, 0.1) 1.3em
+      transparent 1.5em,
+      rgba(0, 0, 128, 0.1) 1.5em,
+      rgba(0, 0, 128, 0.1) 1.6em
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 0, 0, 0.1) 1px,
+      rgba(255, 0, 0, 0.1) 2px
     );
-  pointer-events: none;
+}
+
+.Printout.detective-case-report::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #8b4513, #654321);
+  border-radius: 0.5em;
+  z-index: -1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--ink-blue);
+}
+
+.case-number {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.9em;
+  color: var(--detective-red);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.case-status {
+  position: relative;
+}
+
+.status-badge {
+  padding: 0.2em 0.6em;
+  border-radius: 0.3em;
+  font-size: 0.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-investigating {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: white;
+  border: 1px solid #ff4444;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+}
+
+.status-progress {
+  background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
+  color: white;
+  border: 1px solid #ff9800;
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+}
+
+.status-breakthrough {
+  background: linear-gradient(135deg, #42a5f5 0%, #2196f3 100%);
+  color: white;
+  border: 1px solid #2196f3;
+  box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+}
+
+.status-solved {
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+  color: white;
+  border: 1px solid #4caf50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+  animation: solvedPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes solvedPulse {
+  0% { box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); }
+}
+
+.case-details {
+  margin-bottom: 1em;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3em;
+  font-size: 0.8em;
+}
+
+.label {
+  font-weight: 700;
+  color: var(--detective-red);
+}
+
+.value {
+  color: var(--ink-blue);
+}
+
+.progress-section {
+  margin: 1em 0;
+  padding: 0.8em;
+  background: rgba(0, 0, 128, 0.05);
+  border: 1px solid rgba(0, 0, 128, 0.2);
+  border-radius: 0.5em;
+}
+
+.progress-label {
+  font-size: 0.7em;
+  font-weight: 700;
+  color: var(--detective-red);
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 128, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.3em;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--detective-red) 0%, var(--detective-amber) 50%, var(--neon-green) 100%);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+}
+
+.progress-text {
+  font-size: 0.7em;
+  text-align: center;
+  color: var(--ink-blue);
+  font-weight: 700;
+}
+
+.case-summary {
+  margin: 1em 0;
+  padding: 0.8em;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 0.5em;
+}
+
+.summary-label {
+  font-size: 0.7em;
+  font-weight: 700;
+  color: var(--detective-red);
+  margin-bottom: 0.5em;
+}
+
+.summary-text {
+  font-size: 0.8em;
+  line-height: 1.3;
+  color: var(--ink-blue);
+}
+
+.case-closure {
+  margin: 1em 0;
+  padding: 1em;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+  border: 2px solid #4caf50;
+  border-radius: 0.5em;
+  text-align: center;
+}
+
+.closure-stamp {
+  font-size: 1.2em;
+  font-weight: 900;
+  color: #4caf50;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  margin-bottom: 0.5em;
+}
+
+.closure-text {
+  font-size: 0.8em;
+  color: var(--ink-blue);
+  font-style: italic;
+}
+
+.evidence-count {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(0, 0, 128, 0.2);
+}
+
+.count-item {
+  text-align: center;
+  flex: 1;
+}
+
+.count-number {
+  display: block;
+  font-size: 1.5em;
+  font-weight: 900;
+  color: var(--detective-red);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.count-label {
+  font-size: 0.6em;
+  color: var(--ink-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .Word {
@@ -498,6 +1031,280 @@ body {
   .Scoreboard {
     font-size: 1.2em;
   }
+
+  .Printout.detective-case-report {
+    width: 14em;
+    font-size: 0.8em;
+  }
+
+  .Desk.detective-office {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding: 1.5em;
+  }
+}
+
+/* Detective Headquarters Styling */
+.case-briefing {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+  border: 2px solid var(--neon-blue);
+  border-radius: 1em;
+  padding: 1.5em;
+  margin: 1em auto;
+  max-width: 60em;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  color: #f0f0f0;
+}
+
+.briefing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--neon-blue);
+}
+
+.briefing-header h2 {
+  color: var(--neon-blue);
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 0 20px var(--neon-blue);
+}
+
+.case-status-line {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.current-case {
+  background: var(--detective-red);
+  color: white;
+  padding: 0.3em 0.8em;
+  border-radius: 0.5em;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+.investigation-status {
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
+  padding: 0.3em 0.8em;
+  border-radius: 0.5em;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.briefing-text p {
+  margin: 0;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+/* Detective Career Progress */
+.Scoreboard.detective-career {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+  border: 2px solid var(--neon-green);
+  border-radius: 1.5em;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  margin: 2em auto;
+  max-width: 30em;
+}
+
+.career-badge {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.rank-badge {
+  font-size: 3em;
+  filter: drop-shadow(0 0 15px var(--neon-green));
+}
+
+.rank-title {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 1.2em;
+  color: var(--neon-green);
+  text-shadow: 0 0 15px var(--neon-green);
+}
+
+.career-stats {
+  display: flex;
+  gap: 2em;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.stat {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2em;
+  font-weight: 900;
+  color: var(--neon-yellow);
+  text-shadow: 0 0 15px var(--neon-yellow);
+}
+
+.stat-label {
+  font-size: 0.8em;
+  color: #e0e0e0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Evidence Locker Styling */
+.FileCabinet.evidence-locker {
+  background: linear-gradient(135deg, #333 0%, #111 100%);
+  border: 3px solid #666;
+  border-radius: 1em;
+  padding: 1.5em;
+  margin: 2em;
+  color: #e0e0e0;
+  font-family: 'Orbitron', monospace;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.locker-title {
+  font-size: 1.2em;
+  font-weight: 900;
+  color: var(--neon-blue);
+  text-align: center;
+  margin-bottom: 1em;
+  text-shadow: 0 0 15px var(--neon-blue);
+}
+
+.locker-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1em;
+}
+
+.locker-item {
+  text-align: center;
+}
+
+.locker-count {
+  display: block;
+  font-size: 1.8em;
+  font-weight: 900;
+  color: var(--detective-amber);
+  text-shadow: 0 0 10px var(--detective-amber);
+}
+
+.locker-label {
+  font-size: 0.7em;
+  color: #ccc;
+  text-transform: uppercase;
+}
+
+.clearance-level {
+  text-align: center;
+  padding-top: 1em;
+  border-top: 1px solid #666;
+}
+
+.clearance-text {
+  font-size: 0.8em;
+  color: var(--neon-green);
+  font-weight: 700;
+}
+
+/* Office Atmosphere */
+.office-atmosphere {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.office-lamp {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 100px;
+  height: 200px;
+}
+
+.lamp-light {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 0, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: lampFlicker 4s ease-in-out infinite alternate;
+}
+
+@keyframes lampFlicker {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.case-board {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 200px;
+  height: 150px;
+  background: rgba(139, 69, 19, 0.3);
+  border: 2px solid #8b4513;
+  border-radius: 0.5em;
+}
+
+.board-title {
+  background: var(--detective-red);
+  color: white;
+  padding: 0.3em;
+  text-align: center;
+  font-size: 0.7em;
+  font-weight: 700;
+}
+
+.case-threads {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.thread {
+  position: absolute;
+  height: 1px;
+  background: var(--detective-red);
+  box-shadow: 0 0 3px var(--detective-red);
+}
+
+.thread-1 {
+  top: 30%;
+  left: 10%;
+  width: 80%;
+  transform: rotate(15deg);
+}
+
+.thread-2 {
+  top: 50%;
+  left: 5%;
+  width: 70%;
+  transform: rotate(-10deg);
+}
+
+.thread-3 {
+  top: 70%;
+  left: 15%;
+  width: 60%;
+  transform: rotate(5deg);
 }
 
 /* Additional atmospheric effects */
