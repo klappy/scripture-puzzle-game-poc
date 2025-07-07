@@ -97,7 +97,7 @@
 .ComputerScreen.detective-terminal {
   background: var(--terminal-bg);
   color: var(--terminal-text);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', Consolas, Monaco, monospace;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -116,7 +116,7 @@
 }
 
 .terminal-title {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 900;
   font-size: 1em;
   color: var(--neon-green);

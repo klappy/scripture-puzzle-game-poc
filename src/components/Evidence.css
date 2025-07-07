@@ -35,7 +35,7 @@
     0 10px 30px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   color: #f4f4f4;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', Consolas, Monaco, monospace;
   background-image: 
     repeating-linear-gradient(
       45deg,
@@ -57,7 +57,7 @@
 
 .evidence-header h3 {
   color: #ffd700;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 900;
   font-size: 1.4em;
   text-shadow: 
@@ -275,7 +275,7 @@
   margin: 0.3em;
   border: 2px solid #8b4513;
   border-radius: 0.5em;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', Consolas, Monaco, monospace;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

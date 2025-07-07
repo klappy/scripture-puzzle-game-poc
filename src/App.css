@@ -1,5 +1,4 @@
-/* Import retro fonts */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+/* Fonts will be loaded via HTML link tags to avoid build issues */
 
 /* CSS Variables for consistent retro theming */
 :root {
@@ -30,7 +29,7 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', Consolas, Monaco, monospace;
   overflow-x: hidden;
   min-height: 100vh;
   background: 
@@ -107,7 +106,7 @@ body {
   border-radius: 3em;
   color: var(--terminal-text);
   background: var(--terminal-bg);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', Consolas, Monaco, monospace;
   font-size: 1.2em;
   line-height: 1.4;
   height: 30em;
@@ -269,7 +268,7 @@ body {
 }
 
 .file-label {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 700;
   font-size: 0.8em;
   color: var(--ink-blue);
@@ -324,7 +323,7 @@ body {
 }
 
 .badge-text {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 900;
   font-size: 0.6em;
   color: #8b6914;
@@ -333,7 +332,7 @@ body {
 }
 
 .badge-number {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 700;
   font-size: 0.8em;
   color: #8b6914;
@@ -347,7 +346,7 @@ body {
   border-radius: 0.5em;
   padding: 1em;
   color: #ecf0f1;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   text-align: center;
   box-shadow: 
     0 5px 15px rgba(0, 0, 0, 0.3),
@@ -485,7 +484,7 @@ body {
   align-items: center;
   font-weight: 900;
   color: #e65100;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
@@ -614,7 +613,7 @@ body {
   padding: 1em;
   margin: 1em;
   color: #ccc;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 700;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -625,7 +624,7 @@ body {
   background: linear-gradient(135deg, var(--case-paper) 0%, #f0f0e8 100%);
   border: 2px solid var(--ink-blue);
   color: var(--ink-blue);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', Consolas, Monaco, monospace;
   font-size: 0.9em;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -675,7 +674,7 @@ body {
 }
 
 .case-number {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 700;
   font-size: 0.9em;
   color: var(--detective-red);
@@ -863,7 +862,7 @@ body {
 
 .Word {
   background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', 'Courier New', Consolas, Monaco, monospace;
   padding: 0.3em 0.5em;
   margin: 0.3em;
   border: 2px solid #ddd;
@@ -895,7 +894,7 @@ body {
   margin: 0 0.8em;
   padding: 0.8em 1.5em;
   font-size: 1.1em;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 700;
   cursor: pointer;
   border: 2px solid var(--neon-blue);
@@ -941,7 +940,7 @@ body {
 }
 
 .Scoreboard {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-size: 1.5em;
   font-weight: 900;
   color: var(--neon-green);
@@ -1066,7 +1065,7 @@ body {
 
 .briefing-header h2 {
   color: var(--neon-blue);
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 900;
   margin: 0;
   text-shadow: 0 0 20px var(--neon-blue);
@@ -1083,7 +1082,7 @@ body {
   color: white;
   padding: 0.3em 0.8em;
   border-radius: 0.5em;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 700;
   font-size: 0.9em;
 }
@@ -1130,7 +1129,7 @@ body {
 }
 
 .rank-title {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   font-weight: 900;
   font-size: 1.2em;
   color: var(--neon-green);
@@ -1172,7 +1171,7 @@ body {
   padding: 1.5em;
   margin: 2em;
   color: #e0e0e0;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Orbitron', 'Impact', 'Arial Black', sans-serif;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
