@@ -6,7 +6,14 @@ export default function Word({text, used, correct, addWordToEditorText}) {
   if (used) className = className + ' used';
   if (correct) className = className + ' correct';
 
-  const clickAudio = typeof Audio !== 'undefined' ? new Audio('/sounds/typewriter-key.mp3') : null;
+  const clickAudio = typeof Audio !== 'undefined' ? (() => {
+    const audio = new Audio('/sounds/typewriter-key.mp3');
+    audio.onerror = () => {
+      audio.src = 'https://assets.mixkit.co/sfx/preview/mixkit-typewriter-key-1121.mp3';
+    };
+    audio.volume = 0.35;
+    return audio;
+  })() : null;
 
   const handleClick = () => {
     // Prevent adding the word again if it has already been used
