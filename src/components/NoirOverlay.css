@@ -1,0 +1,12 @@
+.NoirOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 500;
+  background: rgba(20, 20, 20, 0.3);
+  mix-blend-mode: multiply;
+  backdrop-filter: grayscale(0.4) contrast(1.3) brightness(0.9);
+}

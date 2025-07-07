@@ -6,6 +6,8 @@ import BrickWall from "./components/BrickWall";
 import DustParticles from "./components/DustParticles";
 import NeonSign from "./components/NeonSign";
 import CaseSolvedStamp from "./components/CaseSolvedStamp";
+import MagnifierCursor from "./components/MagnifierCursor";
+import NoirOverlay from "./components/NoirOverlay";
 
 export default function Layout() {
   const [editorText, setEditorText] = useState('');
@@ -16,6 +18,8 @@ export default function Layout() {
   const [showStamp, setShowStamp] = useState(false);
 
   const { reference, verse, randomVerse } = useBible({});
+
+  const shuffleAudio = typeof Audio !== 'undefined' ? new Audio('/sounds/paper-shuffle.mp3') : null;
 
   useEffect(() => {
     if (verse) {
@@ -54,6 +58,10 @@ export default function Layout() {
 
   const nextVerse = () => {
     const { reference: newRef, verse: newVerse } = randomVerse();
+    if (shuffleAudio) {
+      shuffleAudio.currentTime = 0;
+      shuffleAudio.play();
+    }
     setEvidenceText(newVerse);
     setCurrentReference(newRef);
     setEditorText('');
@@ -85,6 +93,8 @@ export default function Layout() {
       />
       <div className="FileCabinet">FileCabinet</div>
       <CaseSolvedStamp visible={showStamp} />
+      <NoirOverlay />
+      <MagnifierCursor />
     </div>
   );
 };

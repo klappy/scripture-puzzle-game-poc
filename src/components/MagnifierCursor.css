@@ -1,0 +1,17 @@
+.MagnifierCursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px; /* offset to center lens */
+  margin-left: -50px;
+  border: 3px solid rgba(255,255,255,0.9);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  backdrop-filter: brightness(1.4) contrast(1.2);
+  mix-blend-mode: overlay;
+  box-shadow: 0 0 6px rgba(255,255,255,0.8);
+  transition: backdrop-filter 0.2s;
+}

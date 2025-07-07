@@ -1,16 +1,38 @@
 .Evidence {
   display: inline-block;
-  background-color: wheat;
-  height: 10em;
-  width: 7em;
+  position: relative;
+  background: #f7ecd3; /* manila folder */
+  width: 12em;
+  min-height: 10em;
   margin: 1em;
+  padding: 1em 0.8em 0.6em;
+  border: 2px solid #d2c5a5;
+  border-radius: 3px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  font-family: 'VT323', monospace;
+  overflow: hidden;
+}
+
+.Evidence::before {
+  content: '';
+  position: absolute;
+  top: -0.7em;
+  left: 0;
+  width: 6em;
+  height: 1em;
+  background: #f7ecd3;
+  border: 2px solid #d2c5a5;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
 }
 
 .Evidence h3 {
-  color: red;
+  margin: 0 0 0.5em;
+  font-size: 1.1em;
+  color: #b00;
   text-decoration: underline;
-  text-underline-offset: 0.5em;
-  width: 100%;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
 }
 
 .used {
