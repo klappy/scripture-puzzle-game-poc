@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+body {
+  cursor: none;
+}
+
 .App {
   text-align: center;
   min-width: 40em;
@@ -7,6 +13,8 @@
   background-color: brown;
   padding: 1em 0 0 0;
   perspective: 80em;
+  position: relative;
+  cursor: none;
 }
 
 .ComputerScreen {
@@ -19,18 +27,44 @@
   width: 40em;
   margin: 1em auto 0;
   transform: rotateX(-7deg);
+  box-shadow: 0 0 15px 4px rgba(0, 255, 0, 0.5);
+  animation: crtGlow 2.8s infinite steps(2, end), vhsShift 9s infinite;
+  position: relative;
 }
 
 .BackWall {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  z-index: -1;
 }
 
 .Desk {
-  background-color: burlywood;
+  position: relative;
+  background-color: #deb887; /* fallback */
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0.04) 50%, rgba(255,255,255,0.04) 100%),
+    repeating-linear-gradient(45deg, #d7a96b 0px, #d7a96b 6px, #cd9654 6px, #cd9654 12px);
+  background-size: 100% 100%, 12px 12px;
   padding: 1em;
   transform: rotateX(30deg);
-  /* width: 50em;
-  margin: auto; */
+}
+
+.Desk::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: 100%;
+  height: 200%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,224,0.45) 0%, rgba(255,255,224,0.05) 60%, rgba(0,0,0,0) 75%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(40px);
 }
 
 .Book, .Printout {
@@ -113,10 +147,17 @@
 }
 
 .Scoreboard {
-  font-family: monospace;
-  font-size: 1.2em;
-  color: #fff;
-  margin-bottom: 1em;
+  font-family: 'Press Start 2P', 'VT323', monospace;
+  font-size: 1.1em;
+  color: #f4e842;
+  text-shadow: 0 0 4px #f4e842, 0 0 8px #f4e842;
+  margin-bottom: 1.2em;
+  animation: scoreGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes scoreGlow {
+  0%   { text-shadow: 0 0 4px #f4e842, 0 0 8px #f4e842; }
+  100% { text-shadow: 0 0 8px #f4e842, 0 0 16px #f4e842; }
 }
 
 /* word states */
@@ -129,4 +170,60 @@
   background-color: lightgreen;
   color: #000;
   font-weight: 700;
+}
+
+@keyframes crtGlow {
+  0%, 18%, 21%, 23%, 80%, 100% {
+    box-shadow: 0 0 12px 4px rgba(0, 255, 0, 0.4);
+    filter: brightness(1);
+  }
+  19%, 22%, 81%, 99% {
+    box-shadow: 0 0 6px 2px rgba(0, 255, 0, 0.2);
+    filter: brightness(0.8);
+  }
+}
+
+/* scanline overlay */
+.ComputerScreen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0,0,0,0.15) 2px 4px);
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  animation: scanlines 0.35s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+
+@keyframes vhsShift {
+  0%, 100% { filter: none; }
+  25% { filter: hue-rotate(2deg) saturate(1.1); }
+  50% { filter: hue-rotate(-2deg) saturate(1); }
+  75% { filter: hue-rotate(1deg) saturate(1.2); }
+}
+
+/* Word interactive hover feedback */
+.Word:not(.used):hover {
+  background-color: #fff786;
+  color: #000;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.Word:not(.used):active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Magnifying glass cursor (simple crosshair fallback) */
+.Word:not(.used) {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNScgaGVpZ2h0PScxNScgdmlld0JveD0nMCAwIDE2IDE2Jz48Y2lyY2xlIGN4PSc2JyBjeT0nNicgcj0nNScgc3R5bGU9J2ZpbGw6bm9uZTtzdHJva2U6I2ZmZjsgc3Ryb2tlLXdpZHRoOjI7Jy8+PGxpbmUgeDE9JzExJyB5MT0nMTEnIHgyPScxNScgeTI9JzE1JyBzdHlsZT0nc3Ryb2tlOiNmZmY7c3Ryb2tlLXdpZHRoOjI7Jy8+PC9zdmc+'), crosshair;
 }

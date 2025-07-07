@@ -1,65 +1,49 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+:root {
+  --brick-color: #b54848;
+  --mortar-color: #8a3a3a;
+  --brick-width: 120px;
+  --brick-height: 60px;
+  --brick-gap: 6px;
 }
 
-@brick-color: #bd5858;
-@brick-border-radius: 2px;
-@brick-width: 15%;
-@brick-height: 3vw;
-@brick-space: 2px;
-@brick-side-space: 4px;
-
-.brick(@width) {
-  background: @brick-color;
-  width: @width;
-  height: @brick-height;
-  border-radius: @brick-border-radius;
-  margin: @brick-space;
-  box-shadow: 0 0 19px 1px darken(@brick-color, 20%) inset;
-}
-
-.row {
+/* full-width wall */
+.BrickWall {
+  width: 100%;
+  height: 100%;
   display: flex;
-  background: #ccc;
-
-  &:first-child .brick {
-    margin-top: @brick-side-space;
-  }
-  &:last-child .brick {
-    margin-bottom: @brick-side-space;
-  }
-
-  &:nth-child(even) {
-    .brick:first-child {
-      display: none;
-    }
-    .brick:last-child {
-      margin-right: @brick-space;
-    }
-    &::before,
-    &::after {
-      position: relative;
-      content: "";
-      /* .brick(calc(@brick-width/2)); */
-    }
-    &::before {
-      margin-left: @brick-side-space;
-    }
-    &::after {
-      margin-right: @brick-side-space;
-    }
-  }
+  flex-direction: column;
+  background: var(--mortar-color);
 }
 
-.brick {
-  /* .brick(@brick-width); */
+.BrickWall .row {
+  display: flex;
+  /* create the mortar gap between rows */
+  margin-bottom: var(--brick-gap);
+}
 
-  &:last-child {
-    margin-right: @brick-side-space;
-  }
-  &:first-child {
-    margin-left: @brick-side-space;
+/* shift every other row by half a brick to create the staggered bond */
+.BrickWall .row:nth-child(even) {
+  margin-left: calc(var(--brick-width) / 2 + var(--brick-gap) / 2);
+}
+
+.BrickWall .brick {
+  width: var(--brick-width);
+  height: var(--brick-height);
+  background: var(--brick-color);
+  border-radius: 4px;
+  margin-right: var(--brick-gap);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ensure the very last brick in a row has no extra right margin */
+.BrickWall .brick:last-child {
+  margin-right: 0;
+}
+
+/* responsive tweaks */
+@media (max-width: 768px) {
+  :root {
+    --brick-width: 80px;
+    --brick-height: 40px;
   }
 }

@@ -1,16 +1,38 @@
 .Evidence {
   display: inline-block;
-  background-color: wheat;
-  height: 10em;
-  width: 7em;
+  position: relative;
+  background: #f7ecd3; /* manila folder */
+  width: 12em;
+  min-height: 10em;
   margin: 1em;
+  padding: 1em 0.8em 0.6em;
+  border: 2px solid #d2c5a5;
+  border-radius: 3px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  font-family: 'VT323', monospace;
+  overflow: hidden;
+}
+
+.Evidence::before {
+  content: '';
+  position: absolute;
+  top: -0.7em;
+  left: 0;
+  width: 6em;
+  height: 1em;
+  background: #f7ecd3;
+  border: 2px solid #d2c5a5;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
 }
 
 .Evidence h3 {
-  color: red;
+  margin: 0 0 0.5em;
+  font-size: 1.1em;
+  color: #b00;
   text-decoration: underline;
-  text-underline-offset: 0.5em;
-  width: 100%;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
 }
 
 .used {
@@ -21,4 +43,91 @@
 .correct {
   text-decoration: none;
   background-color: yellow;
+}
+
+/* decorative elements */
+.Evidence .paperclip {
+  position: absolute;
+  top: -0.3em;
+  left: 0.7em;
+  width: 0.9em;
+  height: 2em;
+  border: 2px solid #aaa;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-radius: 0 0.5em 0.5em 0;
+  transform: rotate(-15deg);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.Evidence .coffee-stain {
+  position: absolute;
+  bottom: 0.8em;
+  right: 0.8em;
+  width: 4em;
+  height: 4em;
+  border: 3px solid rgba(105, 67, 33, 0.45);
+  border-radius: 50%;
+  transform: rotate(5deg);
+  filter: blur(0.4px);
+  opacity: 0.7;
+}
+
+.Evidence::after {
+  content: 'CONFIDENTIAL';
+  position: absolute;
+  bottom: 1.2em;
+  left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7em;
+  color: rgba(180, 0, 0, 0.8);
+  border: 2px solid rgba(180, 0, 0, 0.8);
+  padding: 0.2em 0.6em;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.Evidence .fingerprint {
+  position: absolute;
+  width: 5em;
+  height: 5em;
+  background-image: url('https://i.imgur.com/eM6Uz7j.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  filter: sepia(0.4) hue-rotate(-20deg);
+}
+
+.Evidence .fp1 {
+  top: 1.6em;
+  left: 0.4em;
+  transform: rotate(12deg);
+}
+
+.Evidence .fp2 {
+  bottom: 1.4em;
+  right: 0.4em;
+  transform: rotate(-18deg);
+}
+
+.Evidence .redacted {
+  position: absolute;
+  height: 1em;
+  background: rgba(0,0,0,0.85);
+  opacity: 0.9;
+}
+
+.Evidence .r1 {
+  top: 4.2em;
+  left: 0.8em;
+  width: 80%;
+  transform: rotate(-2deg);
+}
+
+.Evidence .r2 {
+  top: 6em;
+  left: 1em;
+  width: 75%;
+  transform: rotate(1deg);
 }

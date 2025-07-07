@@ -1,3 +1,5 @@
+import TypewriterText from "./TypewriterText";
+
 export default function Printout ({ evidenceText = '', editorText = '', reference = '' }) {
   const evidenceWords = evidenceText.trim().split(/\s+/).filter(Boolean);
   const editorWords = editorText.trim().split(/\s+/).filter(Boolean);
@@ -13,5 +15,9 @@ export default function Printout ({ evidenceText = '', editorText = '', referenc
     printoutText = `Progress: ${correctWordCount}/${evidenceWords.length} words correct`;
   }
 
-  return (<div className="Printout">{printoutText}</div>);
+  return (
+    <div className="Printout">
+      <TypewriterText text={printoutText} speed={30} />
+    </div>
+  );
 };

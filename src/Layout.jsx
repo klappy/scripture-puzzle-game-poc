@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import ComputerScreen from "./components/ComputerScreen";
 import Desk from "./components/Desk";
 import useBible from "./hooks/useBible";
+import BrickWall from "./components/BrickWall";
+import DustParticles from "./components/DustParticles";
+import NeonSign from "./components/NeonSign";
+import CaseSolvedStamp from "./components/CaseSolvedStamp";
+import MagnifierCursor from "./components/MagnifierCursor";
+import NoirOverlay from "./components/NoirOverlay";
 
 export default function Layout() {
   const [editorText, setEditorText] = useState('');
@@ -9,8 +15,18 @@ export default function Layout() {
   const [currentReference, setCurrentReference] = useState('');
   const [score, setScore] = useState(0);
   const [wasComplete, setWasComplete] = useState(false);
+  const [showStamp, setShowStamp] = useState(false);
 
   const { reference, verse, randomVerse } = useBible({});
+
+  const shuffleAudio = typeof Audio !== 'undefined' ? (() => {
+    const audio = new Audio('/sounds/paper-shuffle.mp3');
+    audio.onerror = () => {
+      audio.src = 'https://assets.mixkit.co/sfx/preview/mixkit-quick-paper-shuffling-2354.mp3';
+    };
+    audio.volume = 0.5;
+    return audio;
+  })() : null;
 
   useEffect(() => {
     if (verse) {
@@ -31,6 +47,8 @@ export default function Layout() {
     if (verseComplete && !wasComplete) {
       setScore(prev => prev + 1);
       setWasComplete(true);
+      setShowStamp(true);
+      setTimeout(() => setShowStamp(false), 2500);
     } else if (!verseComplete && wasComplete) {
       setWasComplete(false);
     }
@@ -47,6 +65,10 @@ export default function Layout() {
 
   const nextVerse = () => {
     const { reference: newRef, verse: newVerse } = randomVerse();
+    if (shuffleAudio) {
+      shuffleAudio.currentTime = 0;
+      shuffleAudio.play();
+    }
     setEvidenceText(newVerse);
     setCurrentReference(newRef);
     setEditorText('');
@@ -56,6 +78,9 @@ export default function Layout() {
   return (
     <div className="Layout">
       <div className="BackWall">
+        <BrickWall />
+        <DustParticles />
+        <NeonSign />
       </div>
       <ComputerScreen editorText={editorText} onEditorText={setEditorText} />
 
@@ -74,6 +99,9 @@ export default function Layout() {
         reference={currentReference}
       />
       <div className="FileCabinet">FileCabinet</div>
+      <CaseSolvedStamp visible={showStamp} />
+      <NoirOverlay />
+      <MagnifierCursor />
     </div>
   );
 };
