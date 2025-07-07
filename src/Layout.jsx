@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ComputerScreen from "./components/ComputerScreen";
 import Desk from "./components/Desk";
 import useBible from "./hooks/useBible";
+import BrickWall from "./components/BrickWall";
 
 export default function Layout() {
   const [editorText, setEditorText] = useState('');
@@ -56,6 +57,7 @@ export default function Layout() {
   return (
     <div className="Layout">
       <div className="BackWall">
+        <BrickWall />
       </div>
       <ComputerScreen editorText={editorText} onEditorText={setEditorText} />
 

@@ -7,6 +7,7 @@
   background-color: brown;
   padding: 1em 0 0 0;
   perspective: 80em;
+  position: relative;
 }
 
 .ComputerScreen {
@@ -22,7 +23,13 @@
 }
 
 .BackWall {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  z-index: -1;
 }
 
 .Desk {
