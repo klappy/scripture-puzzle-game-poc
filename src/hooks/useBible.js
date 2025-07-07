@@ -23,6 +23,15 @@ export default function useBible({ reference }) {
         return { reference, verse };
     }, []);
 
+    // Return a random verse from the kjv data set. Useful for "next verse" gameplay.
+    const randomVerse = useCallback(() => {
+        const randomIndex = Math.floor(Math.random() * (lines.length - 1));
+        const line = lines[randomIndex];
+        const { reference, verse } = parseVerseFromLine(line);
+
+        return { reference, verse };
+    }, []);
+
     // const getVerseFromReference = (reference) => {
     //     const line = lines.find((line) => line.includes(reference) );
     //     const [_reference, verse] = line.split('\t');
@@ -37,5 +46,6 @@ export default function useBible({ reference }) {
         setState({ reference, verse });
     }, [verseOfTheDay]);
 
-    return state;
+    // expose the randomVerse helper so consuming components can advance to a new verse at will
+    return { ...state, randomVerse };
 };
