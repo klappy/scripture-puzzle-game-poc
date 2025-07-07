@@ -1,132 +1,522 @@
+/* Import retro fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+/* CSS Variables for consistent retro theming */
+:root {
+  --neon-green: #00ff41;
+  --neon-blue: #00d4ff;
+  --neon-pink: #ff0080;
+  --neon-yellow: #ffff00;
+  --terminal-bg: #001100;
+  --terminal-text: #00ff41;
+  --crt-border: #2a2a2a;
+  --desk-wood: #8b4513;
+  --desk-shadow: #654321;
+  --screen-glow: rgba(0, 255, 65, 0.3);
+}
+
+/* Global styles with retro aesthetics */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-family: 'Share Tech Mono', monospace;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #001100 0%, #000000 100%);
+  animation: backgroundPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% { filter: brightness(0.8); }
+  100% { filter: brightness(1.2); }
+}
+
 .App {
   text-align: center;
   min-width: 40em;
+  position: relative;
+  z-index: 1;
+  /* Add CRT scanlines effect */
+  background: 
+    linear-gradient(transparent 50%, rgba(0, 255, 65, 0.03) 50%),
+    linear-gradient(90deg, transparent 50%, rgba(0, 255, 65, 0.03) 50%);
+  background-size: 100% 4px, 4px 100%;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 4px, 4px 0; }
 }
 
 .Layout {
-  background-color: brown;
-  padding: 1em 0 0 0;
-  perspective: 80em;
+  background: 
+    linear-gradient(135deg, rgba(139, 69, 19, 0.9) 0%, rgba(101, 67, 33, 0.9) 100%);
+  padding: 2em 0 0 0;
+  perspective: 100em;
+  position: relative;
+  min-height: 100vh;
+  /* Add subtle wood grain texture */
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.1) 2px,
+      rgba(0,0,0,0.1) 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0,0,0,0.05) 1px,
+      rgba(0,0,0,0.05) 2px
+    );
+}
+
+.Layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at top, rgba(0, 255, 65, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse at bottom, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .ComputerScreen {
-  border: beige 2em solid;
-  border-radius: 2.3em;
-  color: lightgreen;
-  background-color: darkgreen;
-  font-family: monospace;
-  height: 25em;
-  width: 40em;
-  margin: 1em auto 0;
-  transform: rotateX(-7deg);
+  border: var(--crt-border) 3em solid;
+  border-radius: 3em;
+  color: var(--terminal-text);
+  background: var(--terminal-bg);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.2em;
+  line-height: 1.4;
+  height: 30em;
+  width: 50em;
+  max-width: 90vw;
+  margin: 2em auto 0;
+  transform: rotateX(-5deg) rotateY(2deg);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 0 50px var(--screen-glow),
+    0 0 100px rgba(0, 255, 65, 0.2),
+    inset 0 0 50px rgba(0, 255, 65, 0.1),
+    0 20px 40px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+.ComputerScreen:hover {
+  transform: rotateX(-5deg) rotateY(2deg) scale(1.02);
+  box-shadow: 
+    0 0 70px var(--screen-glow),
+    0 0 120px rgba(0, 255, 65, 0.3),
+    inset 0 0 50px rgba(0, 255, 65, 0.15),
+    0 25px 50px rgba(0, 0, 0, 0.9);
+}
+
+/* CRT screen effects */
+.ComputerScreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(transparent 50%, rgba(0, 255, 65, 0.05) 50%);
+  background-size: 100% 2px;
+  animation: crtScanlines 0.033s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes crtScanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 2px; }
+}
+
+.ComputerScreen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .BackWall {
-  display: none;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
 }
 
 .Desk {
-  background-color: burlywood;
-  padding: 1em;
-  transform: rotateX(30deg);
-  /* width: 50em;
-  margin: auto; */
+  background: 
+    linear-gradient(135deg, var(--desk-wood) 0%, var(--desk-shadow) 100%);
+  padding: 2em;
+  transform: rotateX(25deg) translateZ(-50px);
+  margin-top: 3em;
+  position: relative;
+  border-radius: 2em 2em 0 0;
+  box-shadow: 
+    0 -10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 5px 20px rgba(255, 255, 255, 0.1);
+  /* Wood grain texture */
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.1) 3px,
+      rgba(0,0,0,0.1) 6px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0,0,0,0.05) 1px,
+      rgba(0,0,0,0.05) 2px
+    );
+}
+
+.Desk::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  border-radius: 2em 2em 0 0;
 }
 
 .Book, .Printout {
   display: inline-block;
-  height: 9em;
-  width: 7em;
+  height: 12em;
+  width: 8em;
   margin: 1em;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.Book:hover, .Printout:hover {
+  transform: translateY(-5px) rotateZ(2deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .Book {
-  border-right: 0.5em solid;
-  border-bottom: 0.5em solid;
-  border-radius: 0.3em;
+  border-right: 0.8em solid;
+  border-bottom: 0.8em solid;
+  border-radius: 0.5em;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.Book::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
 }
 
 .ReferenceBook {
-  background-color: whitesmoke;
-  border-color: lightgray;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  border-color: #bbb;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .BookCover {
-  border-color: gold;
-  border-radius: 0.3em;
+  border-color: #ffd700;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .BookCover .gap {
-  margin: 1.5em auto;
-  height: 2em;
-  width: 4em;
-  background-color: gray;
+  margin: 2em auto;
+  height: 3em;
+  width: 5em;
+  background: linear-gradient(135deg, #333 0%, #666 100%);
+  border: 2px solid #ffd700;
+  border-radius: 0.3em;
 }
 
 .BookCover, .BookCoverLetter {
-  background-color: black;
-  color: gold;
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  color: #ffd700;
 }
 
 .BookCoverLetter {
   display: inline-block;
-  margin: 0.2em;
-  padding: 0 0.05em;
+  margin: 0.3em;
+  padding: 0.1em 0.2em;
   font-weight: 700;
+  text-shadow: 0 0 10px #ffd700;
+  border: 1px solid #ffd700;
+  border-radius: 0.2em;
+  background: rgba(255, 215, 0, 0.1);
 }
 
 .FileCabinet {
-  background-color: gray;
+  background: linear-gradient(135deg, #666 0%, #333 100%);
+  border: 2px solid #444;
+  border-radius: 0.5em;
+  padding: 1em;
+  margin: 1em;
+  color: #ccc;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .Printout {
-  background-color: ivory;
-  border: 1px blue dotted;
-  color: darkgray;
-  font-family: monospace;
+  background: linear-gradient(135deg, #fffff0 0%, #f0f0f0 100%);
+  border: 2px #4169e1 dotted;
+  color: #333;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.Printout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1.2em,
+      rgba(0, 0, 255, 0.1) 1.2em,
+      rgba(0, 0, 255, 0.1) 1.3em
+    );
+  pointer-events: none;
 }
 
 .Word {
-  background-color: lightgray;
-  font-family: cursive;
-  padding: 0 0.2em;
-  margin: 0.2em;
-  border: 2px wheat dotted;
+  background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
+  font-family: 'Share Tech Mono', monospace;
+  padding: 0.3em 0.5em;
+  margin: 0.3em;
+  border: 2px solid #ddd;
+  border-radius: 0.3em;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.Word:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-green) 100%);
+  color: #000;
+  box-shadow: 
+    0 5px 15px rgba(0, 212, 255, 0.3),
+    0 0 20px rgba(0, 255, 65, 0.3);
+  border-color: var(--neon-yellow);
 }
 
 .Controls {
-  margin: 1em;
+  margin: 2em;
+  z-index: 10;
+  position: relative;
 }
 
 .Controls button {
-  margin: 0 0.5em;
-  padding: 0.4em 1em;
-  font-size: 1em;
+  margin: 0 0.8em;
+  padding: 0.8em 1.5em;
+  font-size: 1.1em;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
   cursor: pointer;
-  border: 1px solid #333;
-  background-color: #f0f0f0;
-  border-radius: 4px;
+  border: 2px solid var(--neon-blue);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 255, 65, 0.1) 100%);
+  color: var(--neon-blue);
+  border-radius: 0.8em;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.Controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.Controls button:hover::before {
+  left: 100%;
 }
 
 .Controls button:hover {
-  background-color: #e0e0e0;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 255, 65, 0.2) 100%);
+  color: var(--neon-yellow);
+  border-color: var(--neon-yellow);
+  box-shadow: 
+    0 0 30px rgba(255, 255, 0, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.Controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
 }
 
 .Scoreboard {
-  font-family: monospace;
-  font-size: 1.2em;
-  color: #fff;
+  font-family: 'Orbitron', monospace;
+  font-size: 1.5em;
+  font-weight: 900;
+  color: var(--neon-green);
   margin-bottom: 1em;
+  text-shadow: 
+    0 0 20px var(--neon-green),
+    0 0 40px var(--neon-green);
+  background: rgba(0, 255, 65, 0.1);
+  border: 2px solid var(--neon-green);
+  border-radius: 1em;
+  padding: 0.5em 1em;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  animation: scoreGlow 2s ease-in-out infinite alternate;
 }
 
-/* word states */
+@keyframes scoreGlow {
+  0% { 
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    text-shadow: 0 0 20px var(--neon-green);
+  }
+  100% { 
+    box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
+    text-shadow: 0 0 30px var(--neon-green), 0 0 60px var(--neon-green);
+  }
+}
+
+.Scoreboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+  animation: scoreboardScan 3s ease-in-out infinite;
+}
+
+@keyframes scoreboardScan {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
+}
+
+/* Word states with enhanced effects */
 .Word.used {
   opacity: 0.4;
   cursor: default;
+  background: linear-gradient(135deg, #666 0%, #333 100%);
+  color: #999;
+  border-color: #666;
+  transform: scale(0.9);
 }
 
 .Word.correct {
-  background-color: lightgreen;
+  background: linear-gradient(135deg, var(--neon-green) 0%, var(--neon-yellow) 100%);
   color: #000;
   font-weight: 700;
+  border-color: var(--neon-green);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 65, 0.6),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: correctWordPulse 1s ease-in-out;
+}
+
+@keyframes correctWordPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ComputerScreen {
+    width: 90vw;
+    height: 20em;
+    font-size: 1em;
+  }
+  
+  .Controls button {
+    padding: 0.6em 1em;
+    font-size: 1em;
+    margin: 0 0.5em;
+  }
+  
+  .Scoreboard {
+    font-size: 1.2em;
+  }
+}
+
+/* Additional atmospheric effects */
+.Layout::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: atmosphericGlow 10s ease-in-out infinite alternate;
+}
+
+@keyframes atmosphericGlow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ComputerScreen from "./components/ComputerScreen";
 import Desk from "./components/Desk";
+import BrickWall from "./components/BrickWall";
 import useBible from "./hooks/useBible";
 
 export default function Layout() {
@@ -56,6 +57,7 @@ export default function Layout() {
   return (
     <div className="Layout">
       <div className="BackWall">
+        <BrickWall />
       </div>
       <ComputerScreen editorText={editorText} onEditorText={setEditorText} />
 
