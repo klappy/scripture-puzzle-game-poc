@@ -3,41 +3,155 @@
   min-width: 40em;
 }
 
+/*  GLOBAL BACKGROUND  */
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #3a1c00 0%, #120400 70%) fixed;
+  font-family: 'Courier New', monospace;
+  color: #fafafa;
+}
+
+/* LAYOUT & ENVIRONMENT */
 .Layout {
-  background-color: brown;
-  padding: 1em 0 0 0;
+  background: transparent;
+  padding: 2em 0 0 0;
   perspective: 80em;
 }
 
+/* =========================================
+   RETRO TERMINAL / COMPUTER SCREEN STYLING
+   =======================================*/
 .ComputerScreen {
-  border: beige 2em solid;
+  position: relative;
+  border: #d4c18a 2em solid;
   border-radius: 2.3em;
-  color: lightgreen;
-  background-color: darkgreen;
-  font-family: monospace;
+  background: #003600;
+  color: #8aff8a;
+  text-shadow: 0 0 4px #71ff71, 0 0 10px #3cff3c;
   height: 25em;
   width: 40em;
   margin: 1em auto 0;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  overflow: hidden;
   transform: rotateX(-7deg);
 }
 
-.BackWall {
-  display: none;
+/* scan-lines & subtle flicker */
+.ComputerScreen::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 1px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 3px
+  );
+  pointer-events: none;
+  animation: crtFlicker 0.15s infinite;
 }
 
+@keyframes crtFlicker {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+/* 3D WOOD DESK */
 .Desk {
-  background-color: burlywood;
-  padding: 1em;
+  background: repeating-linear-gradient(45deg,#b78a5f 0px,#b78a5f 10px,#ad7f55 10px,#ad7f55 20px);
+  padding: 2em;
   transform: rotateX(30deg);
-  /* width: 50em;
-  margin: auto; */
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.6) inset;
 }
 
+/* BOOKS & PRINTOUTS */
 .Book, .Printout {
   display: inline-block;
   height: 9em;
   width: 7em;
   margin: 1em;
+  transition: transform 0.3s;
+}
+
+.Book:hover, .Printout:hover { transform: translateY(-4px) rotateZ(-1deg); }
+
+/* GAME CONTROLS */
+.Controls {
+  margin: 1em;
+}
+
+/* GAME CONTROLS BUTTONS */
+.Controls button {
+  margin: 0 0.5em;
+  padding: 0.6em 1.4em;
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  color: #111;
+  background: #0ff;
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,255,255,0.8), inset 0 0 10px rgba(0,255,255,0.6);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.Controls button:hover {
+  background: #00e6e6;
+  box-shadow: 0 0 14px rgba(0,255,255,1), inset 0 0 14px rgba(0,255,255,0.8);
+  transform: translateY(-2px);
+}
+
+.Controls button:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 8px rgba(0,255,255,0.6), inset 0 0 8px rgba(0,255,255,1);
+}
+
+/* SCOREBOARD */
+.Scoreboard {
+  font-family: 'Courier New', monospace;
+  font-size: 1.4em;
+  color: #ffe98a;
+  text-shadow: 0 0 6px #ffbb00, 0 0 10px #ffbb00;
+  margin-bottom: 1em;
+}
+
+/* WORD TAGS */
+.Word {
+  display: inline-block;
+  padding: 0.15em 0.3em;
+  margin: 0.25em;
+  border-radius: 6px;
+  user-select: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.Word:hover { transform: translateY(-3px) rotateZ(-2deg); }
+
+.Word.used {
+  opacity: 0.3;
+  cursor: default;
+  text-decoration: line-through red;
+}
+
+.Word.correct {
+  background-color: #fffe8a;
+  color: #222;
+  font-weight: 700;
+  box-shadow: 0 0 8px rgba(255,255,0,0.7);
+  transform: rotateZ(1deg);
+}
+
+.Evidence {
+  background: url('https://www.transparenttextures.com/patterns/paper.png'), wheat;
+  border: 3px solid #c2a76f;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.BackWall {
+  display: none;
 }
 
 .Book {
@@ -92,41 +206,4 @@
   padding: 0 0.2em;
   margin: 0.2em;
   border: 2px wheat dotted;
-}
-
-.Controls {
-  margin: 1em;
-}
-
-.Controls button {
-  margin: 0 0.5em;
-  padding: 0.4em 1em;
-  font-size: 1em;
-  cursor: pointer;
-  border: 1px solid #333;
-  background-color: #f0f0f0;
-  border-radius: 4px;
-}
-
-.Controls button:hover {
-  background-color: #e0e0e0;
-}
-
-.Scoreboard {
-  font-family: monospace;
-  font-size: 1.2em;
-  color: #fff;
-  margin-bottom: 1em;
-}
-
-/* word states */
-.Word.used {
-  opacity: 0.4;
-  cursor: default;
-}
-
-.Word.correct {
-  background-color: lightgreen;
-  color: #000;
-  font-weight: 700;
 }
