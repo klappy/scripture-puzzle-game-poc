@@ -1,6 +1,17 @@
+export default function Printout ({ evidenceText = '', editorText = '', reference = '' }) {
+  const evidenceWords = evidenceText.trim().split(/\s+/).filter(Boolean);
+  const editorWords = editorText.trim().split(/\s+/).filter(Boolean);
 
-export default function Printout ({ evidenceText, editorText, reference }) {
-  const printoutText = (evidenceText === editorText) ? evidenceText : 'Keep trying...';
+  const correctWordCount = editorWords.filter((word, index) => word === evidenceWords[index]).length;
 
-  return (<div className="Printout">{printoutText} {reference}</div>);
+  const verseComplete = (evidenceText === editorText) && evidenceText.length > 0;
+
+  let printoutText = '';
+  if (verseComplete) {
+    printoutText = `${evidenceText} (${reference})`;
+  } else {
+    printoutText = `Progress: ${correctWordCount}/${evidenceWords.length} words correct`;
+  }
+
+  return (<div className="Printout">{printoutText}</div>);
 };
