@@ -76,6 +76,16 @@ body {
 
 .Book:hover, .Printout:hover { transform: translateY(-4px) rotateZ(-1deg); }
 
+/* RETRO PRINTER PAPER */
+.Printout {
+  background: #fffefa;
+  border: 2px dotted #2a5bd7;
+  color: #2a2a2a;
+  font-family: 'Courier New', monospace;
+  padding: 0.5em;
+  box-shadow: 0 0 6px rgba(0,0,0,0.4);
+}
+
 /* GAME CONTROLS */
 .Controls {
   margin: 1em;
@@ -193,17 +203,4 @@ body {
   background-color: gray;
 }
 
-.Printout {
-  background-color: ivory;
-  border: 1px blue dotted;
-  color: darkgray;
-  font-family: monospace;
-}
-
-.Word {
-  background-color: lightgray;
-  font-family: cursive;
-  padding: 0 0.2em;
-  margin: 0.2em;
-  border: 2px wheat dotted;
-}
+/* removed outdated Printout and Word styling duplicates (now overridden above) */
